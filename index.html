@@ -12,7 +12,29 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
-<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://accounts.google.com/gsi/client" async defer>
+function logout() {
+  localStorage.removeItem('50cent_user');
+  state.user = null;
+  state.selectedMenu = null;
+  google.accounts.id.disableAutoSelect();
+  showScreen('landing');
+}
+
+function showSajuEdit() {
+  // 기존 사주 정보 채워넣기
+  if (state.user && state.user.birthdate) {
+    const [y, m, d] = state.user.birthdate.split('-');
+    document.getElementById('input-year').value = y;
+    document.getElementById('input-month').value = parseInt(m);
+    document.getElementById('input-day').value = parseInt(d);
+    document.getElementById('input-time').value = state.user.birth_time || '';
+    document.getElementById('input-gender').value = state.user.gender || '';
+  }
+  showScreen('saju');
+}
+
+</script>
 
 <style>
 :root {
@@ -596,6 +618,30 @@ body::before {
   display: none;
 }
 .error-msg.visible { display: block; }
+
+.profile-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.profile-name { font-size: 15px; color: var(--text-muted); }
+.profile-actions { display: flex; gap: 8px; }
+.profile-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 13px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.profile-btn:hover { color: var(--text); border-color: var(--accent); }
+.profile-btn.logout:hover { color: #ff6b6b; border-color: #ff6b6b; }
+
 </style>
 </head>
 <body>
@@ -675,6 +721,13 @@ body::before {
 <!-- ━━━━━━━━━━ MENU ━━━━━━━━━━ -->
 <div id="screen-menu" class="screen">
   <div class="container">
+    <div class="profile-bar">
+      <div class="profile-name" id="profile-name-bar">👤</div>
+      <div class="profile-actions">
+        <button class="profile-btn" onclick="showSajuEdit()">사주 수정</button>
+        <button class="profile-btn logout" onclick="logout()">로그아웃</button>
+      </div>
+    </div>
     <div class="greeting">
       <div class="greeting-name" id="greeting-name">안녕하세요 👋</div>
       <div class="greeting-sub" id="greeting-sub">오늘 뭐가 궁금해요?</div>
@@ -949,6 +1002,8 @@ function showMenuScreen() {
       `안녕하세요, ${state.user.name}님 👋`;
     document.getElementById('greeting-sub').textContent =
       '오늘 뭐가 궁금해요?';
+    document.getElementById('profile-name-bar').textContent =
+      state.user.name;
   }
   showScreen('menu');
 }
@@ -960,10 +1015,10 @@ function selectMenu(menu) {
   document.getElementById('concern-wrap').classList.toggle('visible', menu === 'concern');
   document.getElementById('menu-error').classList.remove('visible');
 
-  const prices = { today:500, date:700, interview:700, concern:700, week:1500 };
+  const displays = { today:'$0.50', date:'$0.50', interview:'$0.50', concern:'$0.50', week:'$1.00' };
   const names = { today:'오늘 운세', date:'소개팅 운세', interview:'면접 운세', concern:'고민 운세', week:'이번 주 흐름' };
   document.getElementById('pay-btn').textContent =
-    `${names[menu]} 확인하기 — ${prices[menu].toLocaleString()}원`;
+    `${names[menu]} 확인하기 — ${displays[menu]}`;
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
