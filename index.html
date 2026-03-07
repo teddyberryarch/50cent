@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>궁금하면 50센트</title>
+<meta name="description" content="소개팅, 면접, 중요한 날. 궁금하면 500원.">
+<meta property="og:title" content="궁금하면 50센트">
+<meta property="og:description" content="소개팅 전날, 면접 아침, 중요한 결정 앞에서. 궁금하면 500원.">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0a0a0f">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --surface2: #1a1a24;
+  --border: rgba(255,255,255,0.08);
+  --text: #f0eff8;
+  --muted: #888899;
+  --accent: #c8b8ff;
+  --accent2: #ff9966;
+  --gold: #d4a843;
+  --danger: #ff6b6b;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Space Grotesk', 'Noto Serif KR', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── 노이즈 텍스처 오버레이 ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ━━━━ SCREEN SYSTEM ━━━━ */
+.screen { display: none; min-height: 100vh; }
+.screen.active { display: flex; flex-direction: column; }
+
+/* ━━━━ LANDING ━━━━ */
+#screen-landing {
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.bg-glow {
+  position: fixed;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,184,255,0.06) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.landing-badge {
+  display: inline-block;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 40px;
+}
+
+.landing-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(36px, 10vw, 56px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.landing-title .accent { color: var(--accent); }
+.landing-title .num {
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--gold);
+  font-size: 1.1em;
+}
+
+.landing-sub {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 24px 0 48px;
+}
+
+.landing-sub strong { color: var(--text); }
+
+/* 상황 태그 */
+.situation-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+.tag {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* 구글 로그인 */
+.google-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--text);
+  color: #111;
+  border: none;
+  border-radius: 14px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  width: 100%;
+  max-width: 320px;
+  justify-content: center;
+}
+.google-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.google-btn:active { transform: translateY(0); }
+.google-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+.login-note {
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ━━━━ SAJU INPUT ━━━━ */
+#screen-saju {
+  padding: 60px 20px;
+  justify-content: center;
+}
+
+.page-header {
+  margin-bottom: 40px;
+}
+.page-header h2 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.page-header p { color: var(--muted); font-size: 15px; line-height: 1.6; }
+
+.form-group {
+  margin-bottom: 24px;
+}
+.form-label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.form-input, .form-select {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: var(--text);
+  font-size: 16px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+.form-input:focus, .form-select:focus {
+  border-color: var(--accent);
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+
+.btn-primary {
+  width: 100%;
+  background: var(--accent);
+  color: #0a0a0f;
+  border: none;
+  border-radius: 14px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  font-family: inherit;
+  margin-top: 8px;
+}
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+/* ━━━━ MENU ━━━━ */
+#screen-menu {
+  padding: 40px 20px 80px;
+}
+
+.greeting {
+  margin-bottom: 32px;
+}
+.greeting-name {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.greeting-sub { color: var(--muted); font-size: 14px; }
+
+.menu-grid { display: flex; flex-direction: column; gap: 12px; }
+
+.menu-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s, background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+}
+.menu-card:hover {
+  border-color: var(--accent);
+  background: var(--surface2);
+  transform: translateX(4px);
+}
+.menu-card.selected {
+  border-color: var(--accent);
+  background: rgba(200,184,255,0.08);
+}
+
+.menu-icon {
+  font-size: 28px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface2);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.menu-info { flex: 1; }
+.menu-name { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.menu-desc { font-size: 13px; color: var(--muted); }
+.menu-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+/* 고민 입력 */
+.concern-input-wrap {
+  display: none;
+  margin-top: 12px;
+}
+.concern-input-wrap.visible { display: block; }
+.concern-input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: var(--text);
+  font-size: 15px;
+  font-family: 'Noto Serif KR', serif;
+  outline: none;
+  resize: none;
+  min-height: 80px;
+}
+.concern-input:focus { border-color: var(--accent); }
+
+.pay-section { margin-top: 32px; }
+
+/* ━━━━ LOADING ━━━━ */
+#screen-loading {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.fortune-spinner {
+  width: 80px; height: 80px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+  margin: 0 auto 32px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.loading-text {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+.loading-sub { color: var(--muted); font-size: 14px; }
+
+/* ━━━━ RESULT ━━━━ */
+#screen-result {
+  padding: 40px 20px 80px;
+}
+
+.result-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+.result-menu-label {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+.result-declaration {
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(20px, 5vw, 26px);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--accent);
+}
+
+/* 오행 배지 */
+.ohaeng-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+/* 운세 본문 */
+.fortune-body {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 16px;
+  line-height: 1.9;
+  color: #d8d4f0;
+  margin-bottom: 32px;
+  white-space: pre-line;
+}
+
+/* 행동 조언 */
+.action-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent2);
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  font-family: 'Noto Serif KR', serif;
+}
+
+/* 이번 주 */
+.weekly-grid { margin-bottom: 32px; }
+.weekly-item {
+  display: flex;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.weekly-item:last-child { border-bottom: none; }
+.weekly-day {
+  font-size: 12px;
+  color: var(--muted);
+  min-width: 40px;
+  padding-top: 2px;
+}
+.weekly-text { font-family: 'Noto Serif KR', serif; font-size: 15px; line-height: 1.6; }
+
+/* 숫자 + 색깔 카드 */
+.fortune-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.fortune-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+}
+.fortune-card-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.lucky-numbers {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.lucky-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.num-reason {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.5;
+  font-family: 'Noto Serif KR', serif;
+}
+
+.color-chip {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.color-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.color-meaning { font-size: 12px; color: var(--muted); line-height: 1.5; font-family: 'Noto Serif KR', serif; }
+
+/* 마무리 한마디 */
+.closing-card {
+  background: linear-gradient(135deg, var(--surface2), var(--surface));
+  border: 1px solid rgba(200,184,255,0.2);
+  border-radius: 16px;
+  padding: 28px 24px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+.closing-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.closing-text {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--accent);
+}
+
+/* 공유 + 업셀 */
+.share-btn {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  color: var(--muted);
+  font-size: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  margin-bottom: 16px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.share-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.stella-banner {
+  background: linear-gradient(135deg, #1a1030, #0d0820);
+  border: 1px solid rgba(200,184,255,0.15);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  text-decoration: none;
+  display: block;
+}
+.stella-banner:hover { border-color: rgba(200,184,255,0.4); }
+.stella-banner-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.stella-banner-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.stella-banner-sub { font-size: 13px; color: var(--muted); }
+
+/* ━━━━ TOAST ━━━━ */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--text);
+  color: #111;
+  padding: 12px 24px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.3s;
+  z-index: 100;
+  white-space: nowrap;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ━━━━ MISC ━━━━ */
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0 0 24px;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.back-btn:hover { color: var(--text); }
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 32px 0;
+}
+
+.section-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.error-msg {
+  background: rgba(255,107,107,0.1);
+  border: 1px solid rgba(255,107,107,0.2);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 14px;
+  color: var(--danger);
+  margin-bottom: 16px;
+  display: none;
+}
+.error-msg.visible { display: block; }
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<div class="toast" id="toast"></div>
+
+<!-- ━━━━━━━━━━ LANDING ━━━━━━━━━━ -->
+<div id="screen-landing" class="screen active">
+  <div class="container" style="display:flex;flex-direction:column;align-items:center;">
+    <div class="landing-badge">AI 사주 · 500원</div>
+
+    <h1 class="landing-title">
+      궁금하면<br>
+      <span class="num">50</span><span class="accent">센트</span>
+    </h1>
+
+    <p class="landing-sub">
+      <strong>소개팅 전날.</strong> 면접 아침.<br>
+      중요한 결정 앞에서.<br>
+      궁금하면 500원만 내면 돼.
+    </p>
+
+    <div class="situation-tags">
+      <span class="tag">💘 소개팅</span>
+      <span class="tag">📋 면접</span>
+      <span class="tag">🤔 고민</span>
+      <span class="tag">📅 오늘의 운세</span>
+      <span class="tag">🗓️ 이번 주 흐름</span>
+    </div>
+
+    <button class="google-btn" onclick="startGoogleLogin()">
+      <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      구글로 시작하기
+    </button>
+    <p class="login-note">로그인하면 사주 정보를 기억해 다음엔 바로 확인할 수 있어요.</p>
+  </div>
+</div>
+
+<!-- ━━━━━━━━━━ SAJU INPUT ━━━━━━━━━━ -->
+<div id="screen-saju" class="screen">
+  <div class="container">
+    <button class="back-btn" onclick="showScreen('menu')">← 뒤로</button>
+    <div class="page-header">
+      <h2>사주 정보 입력</h2>
+      <p>최초 1회만 입력하면 돼요.<br>다음부터는 자동으로 불러와요.</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">생년월일</label>
+      <div class="form-row">
+        <input class="form-input" id="input-year" type="number" placeholder="1990" min="1920" max="2010">
+        <input class="form-input" id="input-month" type="number" placeholder="1" min="1" max="12">
+        <input class="form-input" id="input-day" type="number" placeholder="1" min="1" max="31">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">태어난 시각 <span style="color:var(--muted);font-size:12px;">(선택)</span></label>
+      <input class="form-input" id="input-time" type="text" placeholder="예: 오전 11시, 자시, 오후 3시">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">성별</label>
+      <select class="form-select" id="input-gender">
+        <option value="">선택</option>
+        <option value="남">남</option>
+        <option value="여">여</option>
+      </select>
+    </div>
+
+    <div class="error-msg" id="saju-error">생년월일을 올바르게 입력해주세요.</div>
+
+    <button class="btn-primary" onclick="saveSaju()" id="saju-save-btn">저장하고 계속</button>
+  </div>
+</div>
+
+<!-- ━━━━━━━━━━ MENU ━━━━━━━━━━ -->
+<div id="screen-menu" class="screen">
+  <div class="container">
+    <div class="greeting">
+      <div class="greeting-name" id="greeting-name">안녕하세요 👋</div>
+      <div class="greeting-sub" id="greeting-sub">오늘 뭐가 궁금해요?</div>
+    </div>
+
+    <div class="section-title">메뉴 선택</div>
+    <div class="menu-grid">
+      <div class="menu-card" onclick="selectMenu('today')" data-menu="today">
+        <div class="menu-icon">🔮</div>
+        <div class="menu-info">
+          <div class="menu-name">오늘 운세</div>
+          <div class="menu-desc">오늘 하루 전체 기운과 흐름</div>
+        </div>
+        <div class="menu-price">500원</div>
+      </div>
+
+      <div class="menu-card" onclick="selectMenu('date')" data-menu="date">
+        <div class="menu-icon">💘</div>
+        <div class="menu-info">
+          <div class="menu-name">소개팅 운세</div>
+          <div class="menu-desc">오늘 소개팅, 어떻게 될 것인가</div>
+        </div>
+        <div class="menu-price">700원</div>
+      </div>
+
+      <div class="menu-card" onclick="selectMenu('interview')" data-menu="interview">
+        <div class="menu-icon">📋</div>
+        <div class="menu-info">
+          <div class="menu-name">면접 운세</div>
+          <div class="menu-desc">오늘 면접 기운과 합격 포인트</div>
+        </div>
+        <div class="menu-price">700원</div>
+      </div>
+
+      <div class="menu-card" onclick="selectMenu('concern')" data-menu="concern">
+        <div class="menu-icon">🤔</div>
+        <div class="menu-info">
+          <div class="menu-name">지금 고민 운세</div>
+          <div class="menu-desc">지금 가장 큰 고민 하나를 물어봐</div>
+        </div>
+        <div class="menu-price">700원</div>
+      </div>
+
+      <div class="menu-card" onclick="selectMenu('week')" data-menu="week">
+        <div class="menu-icon">🗓️</div>
+        <div class="menu-info">
+          <div class="menu-name">이번 주 흐름</div>
+          <div class="menu-desc">7일 전체 기운과 주의할 날</div>
+        </div>
+        <div class="menu-price">1,500원</div>
+      </div>
+    </div>
+
+    <div class="concern-input-wrap" id="concern-wrap">
+      <textarea class="concern-input" id="concern-text" placeholder="고민을 적어주세요. 구체적일수록 좋아요."></textarea>
+    </div>
+
+    <div class="pay-section">
+      <div class="error-msg" id="menu-error">메뉴를 선택해주세요.</div>
+      <button class="btn-primary" onclick="startPayment()" id="pay-btn">결제하고 확인하기</button>
+    </div>
+  </div>
+</div>
+
+<!-- ━━━━━━━━━━ LOADING ━━━━━━━━━━ -->
+<div id="screen-loading" class="screen">
+  <div class="container">
+    <div class="fortune-spinner"></div>
+    <div class="loading-text">사주를 읽고 있어요</div>
+    <div class="loading-sub">잠깐이면 돼요...</div>
+  </div>
+</div>
+
+<!-- ━━━━━━━━━━ RESULT ━━━━━━━━━━ -->
+<div id="screen-result" class="screen">
+  <div class="container">
+    <button class="back-btn" onclick="showScreen('menu')">← 다시 보기</button>
+
+    <div class="result-header">
+      <div class="result-menu-label" id="result-menu-label">오늘 운세</div>
+      <div class="result-declaration" id="result-declaration"></div>
+      <div class="ohaeng-badge">
+        <span id="ohaeng-emoji"></span>
+        <span id="ohaeng-text" style="font-size:13px;"></span>
+      </div>
+    </div>
+
+    <div class="section-title">오늘의 운세</div>
+    <div class="fortune-body" id="fortune-body"></div>
+
+    <!-- 행동 조언 (소개팅/면접/고민) -->
+    <div id="action-wrap" style="display:none;">
+      <div class="section-title">오늘 할 것 · 하지 말 것</div>
+      <div class="action-card" id="action-text"></div>
+    </div>
+
+    <!-- 이번 주 -->
+    <div id="weekly-wrap" style="display:none;">
+      <div class="section-title">요일별 흐름</div>
+      <div class="weekly-grid" id="weekly-grid"></div>
+    </div>
+
+    <!-- 숫자 + 색깔 -->
+    <div class="section-title">오늘의 숫자 · 색깔</div>
+    <div class="fortune-cards">
+      <div class="fortune-card">
+        <div class="fortune-card-label">Lucky Numbers</div>
+        <div class="lucky-numbers" id="lucky-numbers"></div>
+        <div class="num-reason" id="num-reason"></div>
+      </div>
+      <div class="fortune-card">
+        <div class="fortune-card-label">Lucky Color</div>
+        <div class="color-chip" id="color-chip"></div>
+        <div class="color-name" id="color-name"></div>
+        <div class="color-meaning" id="color-meaning"></div>
+      </div>
+    </div>
+
+    <!-- 마무리 -->
+    <div class="closing-card">
+      <div class="closing-label">오늘의 한마디</div>
+      <div class="closing-text" id="closing-text"></div>
+    </div>
+
+    <!-- 공유 -->
+    <button class="share-btn" onclick="shareResult()">📸 결과 캡처해서 공유하기</button>
+
+    <!-- STELLA 업셀 -->
+    <a class="stella-banner" href="https://teddyberryarch.github.io/stella/" target="_blank">
+      <div class="stella-banner-label">더 깊은 분석이 필요하다면</div>
+      <div class="stella-banner-title">✦ STELLA — 100페이지 인생 운명서</div>
+      <div class="stella-banner-sub">99,000원 · 당신의 모든 것을 읽다</div>
+    </a>
+  </div>
+</div>
+
+<script>
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 설정
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const API_BASE = window.location.hostname === 'localhost'
+  ? 'http://localhost:8000'
+  : 'https://50cent.up.railway.app';  // Railway 배포 후 변경
+
+const GOOGLE_CLIENT_ID = '__GOOGLE_CLIENT_ID__';  // 환경변수로 주입
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 상태
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+let state = {
+  user: null,           // { user_id, name, email, has_saju, birthdate, birth_time, gender }
+  selectedMenu: null,
+  paymentId: null,
+};
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 화면 전환
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 구글 로그인
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function startGoogleLogin() {
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: handleGoogleResponse,
+  });
+  google.accounts.id.prompt();
+}
+
+async function handleGoogleResponse(resp) {
+  try {
+    const r = await fetch(`${API_BASE}/auth/google`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id_token: resp.credential }),
+    });
+    if (!r.ok) throw new Error('로그인 실패');
+    const data = await r.json();
+    state.user = data;
+    localStorage.setItem('50cent_user', JSON.stringify(data));
+
+    if (!data.has_saju) {
+      showScreen('saju');
+    } else {
+      showMenuScreen();
+    }
+  } catch (e) {
+    showToast('로그인에 실패했어요. 다시 시도해주세요.');
+  }
+}
+
+// 저장된 로그인 확인
+window.addEventListener('DOMContentLoaded', () => {
+  // URL에 payment_id가 있으면 결과 페이지로
+  const params = new URLSearchParams(location.search);
+  const pid = params.get('payment_id');
+  if (pid) {
+    state.paymentId = parseInt(pid);
+    loadResult(state.paymentId);
+    return;
+  }
+
+  const saved = localStorage.getItem('50cent_user');
+  if (saved) {
+    state.user = JSON.parse(saved);
+    if (!state.user.has_saju) {
+      showScreen('saju');
+    } else {
+      showMenuScreen();
+    }
+  }
+});
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 사주 저장
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+async function saveSaju() {
+  const year  = parseInt(document.getElementById('input-year').value);
+  const month = parseInt(document.getElementById('input-month').value);
+  const day   = parseInt(document.getElementById('input-day').value);
+  const time  = document.getElementById('input-time').value.trim();
+  const gender = document.getElementById('input-gender').value;
+  const errEl = document.getElementById('saju-error');
+
+  if (!year || !month || !day || year < 1920 || year > 2010) {
+    errEl.classList.add('visible');
+    return;
+  }
+  errEl.classList.remove('visible');
+
+  const birthdate = `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+  const btn = document.getElementById('saju-save-btn');
+  btn.disabled = true;
+  btn.textContent = '저장 중...';
+
+  try {
+    const r = await fetch(`${API_BASE}/user/saju`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user_id: state.user.user_id,
+        birthdate, birth_time: time, gender,
+      }),
+    });
+    if (!r.ok) throw new Error();
+    state.user.has_saju = true;
+    state.user.birthdate = birthdate;
+    state.user.birth_time = time;
+    state.user.gender = gender;
+    localStorage.setItem('50cent_user', JSON.stringify(state.user));
+    showMenuScreen();
+  } catch (e) {
+    showToast('저장에 실패했어요. 다시 시도해주세요.');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '저장하고 계속';
+  }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 메뉴 화면
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function showMenuScreen() {
+  if (state.user) {
+    document.getElementById('greeting-name').textContent =
+      `안녕하세요, ${state.user.name}님 👋`;
+    document.getElementById('greeting-sub').textContent =
+      '오늘 뭐가 궁금해요?';
+  }
+  showScreen('menu');
+}
+
+function selectMenu(menu) {
+  state.selectedMenu = menu;
+  document.querySelectorAll('.menu-card').forEach(c => c.classList.remove('selected'));
+  document.querySelector(`[data-menu="${menu}"]`).classList.add('selected');
+  document.getElementById('concern-wrap').classList.toggle('visible', menu === 'concern');
+  document.getElementById('menu-error').classList.remove('visible');
+
+  const prices = { today:500, date:700, interview:700, concern:700, week:1500 };
+  const names = { today:'오늘 운세', date:'소개팅 운세', interview:'면접 운세', concern:'고민 운세', week:'이번 주 흐름' };
+  document.getElementById('pay-btn').textContent =
+    `${names[menu]} 확인하기 — ${prices[menu].toLocaleString()}원`;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 결제
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+async function startPayment() {
+  if (!state.selectedMenu) {
+    document.getElementById('menu-error').classList.add('visible');
+    return;
+  }
+  const extra = state.selectedMenu === 'concern'
+    ? document.getElementById('concern-text').value.trim()
+    : '';
+
+  const btn = document.getElementById('pay-btn');
+  btn.disabled = true;
+  btn.textContent = '준비 중...';
+
+  try {
+    const r = await fetch(`${API_BASE}/payment/ready`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user_id:     state.user.user_id,
+        menu_type:   state.selectedMenu,
+        extra_input: extra,
+      }),
+    });
+    if (!r.ok) throw new Error();
+    const data = await r.json();
+
+    // 모바일/PC 분기
+    const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
+    const redirectUrl = isMobile
+      ? data.next_redirect_mobile_url
+      : data.next_redirect_pc_url;
+
+    window.location.href = redirectUrl;
+  } catch (e) {
+    showToast('결제 준비에 실패했어요. 다시 시도해주세요.');
+    btn.disabled = false;
+    btn.textContent = '결제하고 확인하기';
+  }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 결과 로드
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+async function loadResult(paymentId) {
+  showScreen('loading');
+  try {
+    const r = await fetch(`${API_BASE}/reading/${paymentId}`);
+    if (!r.ok) {
+      const err = await r.json();
+      showToast(err.detail || '결과를 불러올 수 없어요.');
+      showScreen('menu');
+      return;
+    }
+    const data = await r.json();
+    renderResult(data);
+  } catch (e) {
+    showToast('오류가 발생했어요. 다시 시도해주세요.');
+    showScreen('menu');
+  }
+}
+
+function renderResult(d) {
+  const menuNames = {
+    today:'오늘 운세', date:'소개팅 운세', interview:'면접 운세',
+    concern:'고민 운세', week:'이번 주 흐름'
+  };
+
+  document.getElementById('result-menu-label').textContent = menuNames[d.menu_type] || '운세';
+  document.getElementById('result-declaration').textContent = d.declaration || '';
+  document.getElementById('ohaeng-emoji').textContent = d.dominant_emoji || '✨';
+  document.getElementById('ohaeng-text').textContent = `${d.dominant || ''} 기운`;
+  document.getElementById('fortune-body').textContent = d.fortune || '';
+
+  // 행동 조언 (소개팅/면접/고민)
+  if (d.action && ['date','interview','concern'].includes(d.menu_type)) {
+    document.getElementById('action-wrap').style.display = 'block';
+    document.getElementById('action-text').textContent = d.action;
+  }
+
+  // 이번 주
+  if (d.weekly && d.menu_type === 'week') {
+    document.getElementById('weekly-wrap').style.display = 'block';
+    const grid = document.getElementById('weekly-grid');
+    const labels = { mon_tue:'월화', wed_thu:'수목', fri_sat:'금토', sun:'일' };
+    grid.innerHTML = Object.entries(d.weekly).map(([k,v]) =>
+      `<div class="weekly-item">
+        <div class="weekly-day">${labels[k]||k}</div>
+        <div class="weekly-text">${v}</div>
+      </div>`
+    ).join('');
+  }
+
+  // 숫자
+  const nums = document.getElementById('lucky-numbers');
+  nums.innerHTML = (d.lucky_numbers||[]).map(n =>
+    `<span class="lucky-num">${n}</span>`
+  ).join('');
+  document.getElementById('num-reason').textContent = d.number_reason || '';
+
+  // 색깔
+  document.getElementById('color-chip').style.background = d.lucky_color_hex || '#888';
+  document.getElementById('color-name').textContent = d.lucky_color_name || '';
+  document.getElementById('color-meaning').textContent = d.lucky_color_meaning || '';
+
+  // 마무리
+  document.getElementById('closing-text').textContent = d.closing || '';
+
+  showScreen('result');
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 공유
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+async function shareResult() {
+  const declaration = document.getElementById('result-declaration').textContent;
+  const closing = document.getElementById('closing-text').textContent;
+  const text = `${declaration}\n\n${closing}\n\n— 궁금하면 50센트`;
+
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: '궁금하면 50센트', text });
+    } catch (e) {}
+  } else {
+    await navigator.clipboard.writeText(text);
+    showToast('클립보드에 복사됐어요 📋');
+  }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 토스트
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+</script>
+</body>
+</html>
