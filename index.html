@@ -3,147 +3,772 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>궁금하면 50센트</title>
-<meta name="description" content="소개팅, 면접, 중요한 날. 궁금하면 50센트.">
-<meta property="og:title" content="궁금하면 50센트">
-<meta property="og:description" content="소개팅 전날, 면접 아침, 중요한 결정 앞에서. 궁금하면 50센트.">
-<meta name="theme-color" content="#0a0a0f">
+<title>운세 990</title>
+<meta name="description" content="소개팅 전날, 면접 아침, 중요한 결정 앞에서. 990원.">
+<meta property="og:title" content="운세 990">
+<meta property="og:description" content="궁금하면 990원.">
+<meta name="theme-color" content="#08070e">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700;900&family=DM+Serif+Display:ital@0;1&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0a0f;--surface:#111118;--surface2:#1a1a24;--border:rgba(255,255,255,0.08);--text:#f0eff8;--muted:#888899;--accent:#c8b8ff;--accent2:#ff9966;--gold:#d4a843;--danger:#ff6b6b}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:'Space Grotesk','Noto Serif KR',sans-serif;min-height:100vh;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
-.container{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:0 20px}
-.screen{display:none;min-height:100vh}.screen.active{display:flex;flex-direction:column}
-#screen-landing{justify-content:center;align-items:center;padding:60px 20px;text-align:center}
-.bg-glow{position:fixed;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(200,184,255,0.06) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
-.landing-badge{display:inline-block;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-size:12px;letter-spacing:.15em;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:40px}
-.landing-title{font-family:'Noto Serif KR',serif;font-size:clamp(36px,10vw,56px);font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:8px}
-.landing-title .accent{color:var(--accent)}.landing-title .num{font-family:'Space Grotesk',sans-serif;color:var(--gold);font-size:1.1em}
-.landing-sub{font-size:16px;color:var(--muted);line-height:1.7;margin:24px 0 48px}
-.landing-sub strong{color:var(--text)}
-.situation-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:48px}
-.tag{background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:8px 16px;font-size:14px;color:var(--muted);cursor:pointer;transition:border-color .2s,color .2s}
-.tag:hover{border-color:var(--accent);color:var(--accent)}
-.google-btn{display:flex;align-items:center;gap:12px;background:var(--text);color:#111;border:none;border-radius:14px;padding:16px 32px;font-size:16px;font-weight:600;cursor:pointer;transition:opacity .2s,transform .1s;width:100%;max-width:320px;justify-content:center}
-.google-btn:hover{opacity:.9;transform:translateY(-1px)}.google-btn svg{width:20px;height:20px;flex-shrink:0}
-.login-note{margin-top:16px;font-size:12px;color:var(--muted)}
-#screen-saju{padding:60px 20px;justify-content:center}
-.page-header{margin-bottom:40px}
-.page-header h2{font-family:'Noto Serif KR',serif;font-size:26px;font-weight:700;margin-bottom:8px}
-.page-header p{color:var(--muted);font-size:15px;line-height:1.6}
-.form-group{margin-bottom:24px}
-.form-label{display:block;font-size:13px;color:var(--muted);letter-spacing:.05em;margin-bottom:10px;text-transform:uppercase}
-.form-input,.form-select{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--text);font-size:16px;font-family:inherit;outline:none;transition:border-color .2s;-webkit-appearance:none}
-.form-input:focus,.form-select:focus{border-color:var(--accent)}
-.form-row{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}
-.form-select option{background:#1a1a24}
-.btn-primary{width:100%;background:var(--accent);color:#0a0a0f;border:none;border-radius:14px;padding:16px;font-size:16px;font-weight:700;cursor:pointer;transition:opacity .2s,transform .1s;font-family:inherit;margin-top:8px}
-.btn-primary:hover{opacity:.9;transform:translateY(-1px)}.btn-primary:disabled{opacity:.4;cursor:not-allowed;transform:none}
-#screen-menu{padding:0 0 80px}
-.top-bar{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:10}
-.top-bar-left{display:flex;align-items:center;gap:10px}
-.top-bar-avatar{width:32px;height:32px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px}
-.top-bar-name{font-size:15px;font-weight:600}
-.top-bar-right{display:flex;gap:8px}
-.top-btn{background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-size:13px;padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .2s;font-family:inherit}
-.top-btn:hover{color:var(--text);border-color:var(--accent)}.top-btn.danger:hover{color:var(--danger);border-color:var(--danger)}
-.menu-container{padding:32px 20px 0;max-width:480px;margin:0 auto}
-.greeting{margin-bottom:32px}
-.greeting-name{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:600;margin-bottom:6px}
-.greeting-sub{color:var(--muted);font-size:14px}
-.menu-grid{display:flex;flex-direction:column;gap:10px}
-.menu-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px 20px;cursor:pointer;transition:border-color .2s,transform .15s,background .2s;display:flex;align-items:center;gap:14px;text-align:left}
-.menu-card:hover{border-color:var(--accent);background:var(--surface2);transform:translateX(3px)}
-.menu-card.selected{border-color:var(--accent);background:rgba(200,184,255,0.07)}
-.menu-icon{font-size:26px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:var(--surface2);border-radius:12px;flex-shrink:0}
-.menu-info{flex:1;min-width:0}
-.menu-name{font-size:15px;font-weight:600;margin-bottom:3px}
-.menu-desc{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.menu-price{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;color:var(--gold);flex-shrink:0}
-.concern-input-wrap{display:none;margin-top:10px}.concern-input-wrap.visible{display:block}
-.concern-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--text);font-size:15px;font-family:'Noto Serif KR',serif;outline:none;resize:none;min-height:80px;transition:border-color .2s}
-.concern-input:focus{border-color:var(--accent)}
-.concern-footer{display:flex;justify-content:flex-end;margin-top:6px;font-size:12px;color:var(--muted)}
-.pay-section{margin-top:28px}
-.section-title{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:14px}
-.error-msg{background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.2);border-radius:12px;padding:12px 16px;font-size:14px;color:var(--danger);margin-bottom:14px;display:none}
-.error-msg.visible{display:block}
-#screen-loading{justify-content:center;align-items:center;text-align:center;padding:40px 20px}
-.fortune-spinner{width:72px;height:72px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 1.2s linear infinite;margin:0 auto 28px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.loading-text{font-family:'Noto Serif KR',serif;font-size:20px;margin-bottom:10px}
-.loading-sub{color:var(--muted);font-size:14px}
-#screen-result{padding:0 0 80px}
-.result-topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:10}
-.back-btn{background:none;border:none;color:var(--muted);font-size:14px;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px;padding:0;transition:color .2s}
-.back-btn:hover{color:var(--text)}
-.result-container{padding:32px 20px 0;max-width:480px;margin:0 auto}
-.result-header{text-align:center;margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--border)}
-.result-menu-label{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:4px 12px;border-radius:100px;margin-bottom:18px}
-.result-declaration{font-family:'Noto Serif KR',serif;font-size:clamp(19px,5vw,24px);font-weight:700;line-height:1.5;color:var(--accent)}
-.ohaeng-badge{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:7px 16px;font-size:13px;margin-top:18px}
-.fortune-body{font-family:'Noto Serif KR',serif;font-size:16px;line-height:1.9;color:#d8d4f0;margin-bottom:28px;white-space:pre-line}
-.action-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:12px;padding:16px 20px;font-size:15px;line-height:1.7;margin-bottom:28px;font-family:'Noto Serif KR',serif;white-space:pre-line}
-.weekly-grid{margin-bottom:28px}
-.weekly-item{display:flex;gap:16px;padding:13px 0;border-bottom:1px solid var(--border)}
-.weekly-item:last-child{border-bottom:none}
-.weekly-day{font-size:12px;color:var(--muted);min-width:36px;padding-top:2px;font-weight:600}
-.weekly-text{font-family:'Noto Serif KR',serif;font-size:15px;line-height:1.6}
-.fortune-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
-.fortune-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px}
-.fortune-card-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
-.lucky-numbers{display:flex;gap:8px;flex-wrap:wrap}
-.lucky-num{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;color:var(--gold);line-height:1}
-.num-reason{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5;font-family:'Noto Serif KR',serif}
-.color-chip{width:44px;height:44px;border-radius:10px;margin-bottom:10px;border:1px solid rgba(255,255,255,0.1)}
-.color-name{font-size:15px;font-weight:600;margin-bottom:4px}
-.color-meaning{font-size:12px;color:var(--muted);line-height:1.5;font-family:'Noto Serif KR',serif}
-.closing-card{background:linear-gradient(135deg,var(--surface2),var(--surface));border:1px solid rgba(200,184,255,0.2);border-radius:16px;padding:26px 22px;text-align:center;margin-bottom:28px}
-.closing-label{font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:14px}
-.closing-text{font-family:'Noto Serif KR',serif;font-size:17px;line-height:1.7;color:var(--accent)}
-.share-btn{width:100%;background:transparent;border:1px solid var(--border);border-radius:14px;padding:14px;color:var(--muted);font-size:14px;cursor:pointer;font-family:inherit;margin-bottom:14px;transition:border-color .2s,color .2s}
-.share-btn:hover{border-color:var(--accent);color:var(--accent)}
-.stella-banner{background:linear-gradient(135deg,#1a1030,#0d0820);border:1px solid rgba(200,184,255,0.15);border-radius:16px;padding:22px;text-align:center;cursor:pointer;transition:border-color .2s;text-decoration:none;display:block}
-.stella-banner:hover{border-color:rgba(200,184,255,0.4)}
-.stella-banner-label{font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:8px}
-.stella-banner-title{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--accent);margin-bottom:5px}
-.stella-banner-sub{font-size:13px;color:var(--muted)}
-.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:#111;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:600;transition:transform .3s;z-index:100;white-space:nowrap;pointer-events:none}
-.toast.show{transform:translateX(-50%) translateY(0)}
+:root {
+  --bg: #08070e;
+  --bg2: #0e0c1a;
+  --surface: #120f1e;
+  --surface2: #1c1830;
+  --border: rgba(255,255,255,0.06);
+  --border2: rgba(255,255,255,0.12);
+  --text: #ede9f8;
+  --muted: #6b6580;
+  --muted2: #9994b0;
+  --gold: #c9a84c;
+  --gold2: #e8c96a;
+  --crimson: #8b1a2e;
+  --accent: #7c6aff;
+  --accent2: #a594ff;
+  --danger: #ff5555;
+  --glow: rgba(124,106,255,0.15);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Serif KR', serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* BACKGROUND TEXTURE */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,106,255,0.08) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ORBITING SIGIL */
+.sigil-bg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.025;
+  animation: sigilSpin 120s linear infinite;
+}
+@keyframes sigilSpin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.screen { display: none; min-height: 100vh; }
+.screen.active { display: flex; flex-direction: column; }
+
+/* ======================== LANDING ======================== */
+#screen-landing {
+  justify-content: center;
+  align-items: center;
+  padding: 80px 24px;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.landing-eyebrow {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 52px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+}
+.landing-eyebrow::before,
+.landing-eyebrow::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--muted);
+  opacity: 0.4;
+}
+
+.landing-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(52px, 14vw, 88px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+.landing-title .num {
+  font-family: 'Courier Prime', monospace;
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 0.9em;
+  display: block;
+  line-height: 1.1;
+}
+
+.landing-rule {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 28px auto;
+}
+
+.landing-sub {
+  font-size: 15px;
+  color: var(--muted2);
+  line-height: 2;
+  margin-bottom: 52px;
+  font-weight: 300;
+}
+.landing-sub strong { color: var(--text); font-weight: 600; }
+
+.situation-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 52px;
+}
+.tag {
+  background: transparent;
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  padding: 9px 18px;
+  font-size: 13px;
+  color: var(--muted2);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Noto Serif KR', serif;
+  letter-spacing: 0.02em;
+}
+.tag:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.05); }
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--text);
+  color: #0a0814;
+  border: none;
+  border-radius: 2px;
+  padding: 17px 36px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  width: 100%;
+  max-width: 320px;
+  justify-content: center;
+  font-family: 'Noto Serif KR', serif;
+  letter-spacing: 0.02em;
+}
+.google-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.google-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.login-note {
+  margin-top: 18px;
+  font-size: 12px;
+  color: var(--muted);
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: 0.02em;
+}
+
+/* ======================== SAJU FORM ======================== */
+#screen-saju { padding: 60px 24px; justify-content: center; }
+
+.page-header { margin-bottom: 44px; }
+.page-header h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+.page-header p { color: var(--muted2); font-size: 14px; line-height: 1.8; font-weight: 300; }
+
+.form-group { margin-bottom: 28px; }
+.form-label {
+  display: block;
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.form-input, .form-select {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  padding: 14px 16px;
+  color: var(--text);
+  font-size: 16px;
+  font-family: 'Noto Serif KR', serif;
+  outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+.form-input:focus, .form-select:focus { border-color: var(--gold); }
+.form-row { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px; }
+.form-select option { background: #1c1830; }
+
+.btn-primary {
+  width: 100%;
+  background: var(--gold);
+  color: #0a0814;
+  border: none;
+  border-radius: 2px;
+  padding: 16px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  font-family: 'Noto Serif KR', serif;
+  letter-spacing: 0.04em;
+  margin-top: 8px;
+}
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-primary:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+
+/* ======================== MENU ======================== */
+#screen-menu { padding: 0 0 80px; }
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: rgba(8,7,14,0.95);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+}
+.top-bar-left { display: flex; align-items: center; gap: 10px; }
+.top-bar-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-family: 'DM Serif Display', serif;
+}
+.top-bar-name { font-size: 14px; font-weight: 600; letter-spacing: 0.01em; }
+.top-bar-right { display: flex; gap: 8px; }
+.top-btn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted2);
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Noto Serif KR', serif;
+}
+.top-btn:hover { color: var(--text); border-color: var(--gold); }
+.top-btn.danger:hover { color: var(--danger); border-color: var(--danger); }
+
+.menu-container { padding: 40px 24px 0; max-width: 460px; margin: 0 auto; }
+
+.greeting { margin-bottom: 40px; }
+.greeting-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px;
+  font-weight: 400;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.greeting-sub { color: var(--muted2); font-size: 14px; font-weight: 300; }
+
+.section-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.menu-grid { display: flex; flex-direction: column; gap: 8px; }
+
+.menu-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+}
+.menu-card:hover { border-color: var(--border2); background: var(--surface2); }
+.menu-card.selected { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+
+.menu-icon {
+  font-size: 22px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface2);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.menu-info { flex: 1; min-width: 0; }
+.menu-name { font-size: 15px; font-weight: 600; margin-bottom: 3px; letter-spacing: 0.01em; }
+.menu-desc { font-size: 12px; color: var(--muted2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 300; }
+.menu-price {
+  font-family: 'Courier Prime', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gold);
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.concern-input-wrap { display: none; margin-top: 10px; }
+.concern-input-wrap.visible { display: block; }
+.concern-input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  padding: 14px 16px;
+  color: var(--text);
+  font-size: 15px;
+  font-family: 'Noto Serif KR', serif;
+  outline: none;
+  resize: none;
+  min-height: 80px;
+  transition: border-color 0.2s;
+  font-weight: 300;
+}
+.concern-input:focus { border-color: var(--gold); }
+.concern-footer { display: flex; justify-content: flex-end; margin-top: 6px; font-size: 11px; color: var(--muted); font-family: 'Courier Prime', monospace; }
+
+.pay-section { margin-top: 32px; }
+
+.error-msg {
+  background: rgba(255,85,85,0.08);
+  border: 1px solid rgba(255,85,85,0.2);
+  border-radius: 2px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--danger);
+  margin-bottom: 14px;
+  display: none;
+}
+.error-msg.visible { display: block; }
+
+/* ======================== LOADING ======================== */
+#screen-loading {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.loading-sigil {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 36px;
+  position: relative;
+}
+.loading-sigil::before {
+  content: '✦';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: var(--gold);
+  animation: pulse 2s ease-in-out infinite;
+}
+.loading-ring {
+  width: 80px;
+  height: 80px;
+  border: 1px solid var(--border2);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  inset: 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulse { 0%, 100% { opacity: 0.4; transform: scale(0.95); } 50% { opacity: 1; transform: scale(1.05); } }
+
+.loading-text {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.loading-sub { color: var(--muted); font-size: 13px; font-family: 'Courier Prime', monospace; letter-spacing: 0.05em; }
+
+/* ======================== RESULT ======================== */
+#screen-result { padding: 0 0 80px; }
+
+.result-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: rgba(8,7,14,0.95);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+}
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--muted2);
+  font-size: 13px;
+  cursor: pointer;
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: 0.05em;
+  padding: 0;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.back-btn:hover { color: var(--text); }
+
+.result-share-btn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted2);
+  font-size: 12px;
+  padding: 7px 16px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Noto Serif KR', serif;
+}
+.result-share-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+.result-container { padding: 40px 24px 0; max-width: 460px; margin: 0 auto; }
+
+.result-header {
+  text-align: center;
+  margin-bottom: 52px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.result-menu-tag {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.result-declaration {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(20px, 5.5vw, 28px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text);
+  font-style: italic;
+  margin-bottom: 24px;
+}
+
+.ohaeng-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  padding: 7px 18px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 12px;
+  color: var(--muted2);
+  letter-spacing: 0.08em;
+}
+
+.result-section-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.result-section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.fortune-body {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 16px;
+  line-height: 2;
+  color: var(--muted2);
+  margin-bottom: 40px;
+  white-space: pre-line;
+  font-weight: 300;
+}
+
+.action-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--gold);
+  border-radius: 2px;
+  padding: 20px 24px;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  font-family: 'Noto Serif KR', serif;
+  white-space: pre-line;
+  font-weight: 300;
+  color: var(--muted2);
+}
+
+.weekly-grid { margin-bottom: 40px; }
+.weekly-item {
+  display: flex;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.weekly-item:last-child { border-bottom: none; }
+.weekly-day {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  min-width: 40px;
+  padding-top: 3px;
+  letter-spacing: 0.08em;
+}
+.weekly-text { font-size: 14px; line-height: 1.7; font-weight: 300; color: var(--muted2); }
+
+.fortune-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+.fortune-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 20px;
+}
+.fortune-card-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.lucky-numbers { display: flex; gap: 10px; flex-wrap: wrap; }
+.lucky-num {
+  font-family: 'Courier Prime', monospace;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.num-reason { font-size: 12px; color: var(--muted); margin-top: 10px; line-height: 1.6; font-weight: 300; }
+
+.color-chip {
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.color-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.color-meaning { font-size: 12px; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+.closing-card {
+  background: var(--surface2);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 2px;
+  padding: 36px 28px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+.closing-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+.closing-text {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(17px, 4.5vw, 22px);
+  line-height: 1.6;
+  color: var(--gold2);
+  font-style: italic;
+}
+
+.stella-banner {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  padding: 26px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 16px;
+}
+.stella-banner:hover { border-color: var(--gold); background: rgba(201,168,76,0.04); }
+.stella-banner-tag {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.stella-banner-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.stella-banner-sub { font-size: 13px; color: var(--muted2); font-weight: 300; }
+
+/* ======================== TOAST ======================== */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--text);
+  color: #0a0814;
+  padding: 12px 28px;
+  border-radius: 2px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+  z-index: 100;
+  white-space: nowrap;
+  pointer-events: none;
+  font-family: 'Noto Serif KR', serif;
+  letter-spacing: 0.02em;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ======================== BACK BTN ======================== */
+.nav-back {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: 'Courier Prime', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  padding: 28px 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: var(--text); }
 </style>
 </head>
 <body>
-<div class="bg-glow"></div>
+
+<!-- SVG sigil background -->
+<svg class="sigil-bg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="200" cy="200" r="190" stroke="white" stroke-width="0.5"/>
+  <circle cx="200" cy="200" r="150" stroke="white" stroke-width="0.3"/>
+  <polygon points="200,20 380,310 20,310" stroke="white" stroke-width="0.4" fill="none"/>
+  <polygon points="200,380 20,90 380,90" stroke="white" stroke-width="0.4" fill="none"/>
+  <circle cx="200" cy="200" r="8" stroke="white" stroke-width="0.5"/>
+  <line x1="200" y1="10" x2="200" y2="390" stroke="white" stroke-width="0.2"/>
+  <line x1="10" y1="200" x2="390" y2="200" stroke="white" stroke-width="0.2"/>
+</svg>
+
 <div class="toast" id="toast"></div>
 
-<!-- LANDING -->
+<!-- ======== LANDING ======== -->
 <div id="screen-landing" class="screen active">
-  <div class="container" style="display:flex;flex-direction:column;align-items:center;">
-    <div class="landing-badge">AI 사주 · $0.50</div>
-    <h1 class="landing-title">궁금하면<br><span class="num">50</span><span class="accent">센트</span></h1>
-    <p class="landing-sub"><strong>소개팅 전날.</strong> 면접 아침.<br>중요한 결정 앞에서.<br>궁금하면 50센트만 내면 돼.</p>
+  <div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:80px 24px;position:relative;z-index:1;">
+    <div class="landing-eyebrow">운세 990</div>
+    <h1 class="landing-title">
+      궁금하면<br>
+      <span class="num">990</span>
+    </h1>
+    <div class="landing-rule"></div>
+    <p class="landing-sub">
+      <strong>소개팅 전날.</strong> 면접 아침.<br>
+      중요한 결정 앞에서.<br>
+      궁금하면 990원.
+    </p>
     <div class="situation-tags">
       <span class="tag" id="tag-date">💘 소개팅</span>
       <span class="tag" id="tag-interview">📋 면접</span>
       <span class="tag" id="tag-concern">🤔 고민</span>
-      <span class="tag" id="tag-today">🔮 오늘 운세</span>
-      <span class="tag" id="tag-week">🗓️ 이번 주</span>
+      <span class="tag" id="tag-today">오늘 운세</span>
+      <span class="tag" id="tag-week">이번 주</span>
     </div>
     <button class="google-btn" id="btn-google">
       <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
       구글로 시작하기
     </button>
-    <p class="login-note">로그인하면 사주 정보를 기억해 다음엔 바로 확인할 수 있어요.</p>
+    <p class="login-note">사주 정보를 기억해 다음엔 바로 확인할 수 있어요.</p>
   </div>
 </div>
 
-<!-- SAJU -->
+<!-- ======== SAJU ======== -->
 <div id="screen-saju" class="screen">
   <div class="container">
-    <button class="back-btn" id="btn-saju-back" style="padding:24px 0 16px;">← 뒤로</button>
+    <button class="nav-back" id="btn-saju-back">← back</button>
     <div class="page-header">
       <h2>사주 정보 입력</h2>
       <p>최초 1회만 입력하면 돼요.<br>다음부터는 자동으로 불러와요.</p>
@@ -163,7 +788,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       </div>
     </div>
     <div class="form-group">
-      <label class="form-label">태어난 시각 <span style="font-size:12px;font-weight:400;">(선택)</span></label>
+      <label class="form-label">태어난 시각 <span style="font-size:11px;font-weight:400;letter-spacing:0;">(선택)</span></label>
       <input class="form-input" id="input-time" type="text" placeholder="예: 오전 11시, 자시">
     </div>
     <div class="form-group">
@@ -179,49 +804,49 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 </div>
 
-<!-- MENU -->
+<!-- ======== MENU ======== -->
 <div id="screen-menu" class="screen">
   <div class="top-bar">
     <div class="top-bar-left">
-      <div class="top-bar-avatar" id="top-avatar">👤</div>
+      <div class="top-bar-avatar" id="top-avatar">✦</div>
       <div class="top-bar-name" id="top-name"></div>
     </div>
     <div class="top-bar-right">
-      <button class="top-btn" id="btn-saju-edit">✏️ 사주 수정</button>
+      <button class="top-btn" id="btn-saju-edit">사주 수정</button>
       <button class="top-btn danger" id="btn-logout">로그아웃</button>
     </div>
   </div>
   <div class="menu-container">
     <div class="greeting">
-      <div class="greeting-name" id="greeting-name">안녕하세요 👋</div>
+      <div class="greeting-name" id="greeting-name">안녕하세요 ✦</div>
       <div class="greeting-sub" id="greeting-sub">오늘 뭐가 궁금해요?</div>
     </div>
-    <div class="section-title">메뉴 선택</div>
+    <div class="section-label">메뉴 선택</div>
     <div class="menu-grid">
       <div class="menu-card" id="card-today" data-menu="today">
         <div class="menu-icon">🔮</div>
         <div class="menu-info"><div class="menu-name">오늘 운세</div><div class="menu-desc">오늘 하루 전체 기운과 흐름</div></div>
-        <div class="menu-price">$0.50</div>
+        <div class="menu-price">990원</div>
       </div>
       <div class="menu-card" id="card-date" data-menu="date">
         <div class="menu-icon">💘</div>
         <div class="menu-info"><div class="menu-name">소개팅 운세</div><div class="menu-desc">오늘 소개팅, 어떻게 될 것인가</div></div>
-        <div class="menu-price">$0.50</div>
+        <div class="menu-price">990원</div>
       </div>
       <div class="menu-card" id="card-interview" data-menu="interview">
         <div class="menu-icon">📋</div>
         <div class="menu-info"><div class="menu-name">면접 운세</div><div class="menu-desc">오늘 면접 기운과 합격 포인트</div></div>
-        <div class="menu-price">$0.50</div>
+        <div class="menu-price">990원</div>
       </div>
       <div class="menu-card" id="card-concern" data-menu="concern">
         <div class="menu-icon">🤔</div>
         <div class="menu-info"><div class="menu-name">지금 고민 운세</div><div class="menu-desc">지금 가장 큰 고민 하나를 물어봐</div></div>
-        <div class="menu-price">$0.50</div>
+        <div class="menu-price">990원</div>
       </div>
       <div class="menu-card" id="card-week" data-menu="week">
         <div class="menu-icon">🗓️</div>
         <div class="menu-info"><div class="menu-name">이번 주 흐름</div><div class="menu-desc">7일 전체 기운과 주의할 날</div></div>
-        <div class="menu-price">$1.00</div>
+        <div class="menu-price">1,990원</div>
       </div>
     </div>
     <div class="concern-input-wrap" id="concern-wrap">
@@ -235,38 +860,44 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 </div>
 
-<!-- LOADING -->
+<!-- ======== LOADING ======== -->
 <div id="screen-loading" class="screen">
-  <div class="container" style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 20px;">
-    <div class="fortune-spinner"></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 24px;">
+    <div class="loading-sigil">
+      <div class="loading-ring"></div>
+    </div>
     <div class="loading-text">사주를 읽고 있어요</div>
     <div class="loading-sub">잠깐이면 돼요...</div>
   </div>
 </div>
 
-<!-- RESULT -->
+<!-- ======== RESULT ======== -->
 <div id="screen-result" class="screen">
   <div class="result-topbar">
     <button class="back-btn" id="btn-result-back">← 메뉴로</button>
-    <button class="share-btn" id="btn-share" style="width:auto;padding:8px 16px;margin:0;font-size:13px;">📸 공유</button>
+    <button class="result-share-btn" id="btn-share">공유하기</button>
   </div>
   <div class="result-container">
     <div class="result-header">
-      <div class="result-menu-label" id="result-menu-label">오늘 운세</div>
+      <div class="result-menu-tag" id="result-menu-label">오늘 운세</div>
       <div class="result-declaration" id="result-declaration"></div>
-      <div class="ohaeng-badge"><span id="ohaeng-emoji"></span><span id="ohaeng-text" style="font-size:13px;"></span></div>
+      <div class="ohaeng-badge"><span id="ohaeng-emoji"></span>&nbsp;<span id="ohaeng-text"></span></div>
     </div>
-    <div class="section-title">오늘의 운세</div>
+
+    <div class="result-section-label">오늘의 운세</div>
     <div class="fortune-body" id="fortune-body"></div>
+
     <div id="action-wrap" style="display:none;">
-      <div class="section-title">오늘 할 것 · 하지 말 것</div>
+      <div class="result-section-label">할 것 · 하지 말 것</div>
       <div class="action-card" id="action-text"></div>
     </div>
+
     <div id="weekly-wrap" style="display:none;">
-      <div class="section-title">요일별 흐름</div>
+      <div class="result-section-label">요일별 흐름</div>
       <div class="weekly-grid" id="weekly-grid"></div>
     </div>
-    <div class="section-title">오늘의 숫자 · 색깔</div>
+
+    <div class="result-section-label">숫자 · 색깔</div>
     <div class="fortune-cards">
       <div class="fortune-card">
         <div class="fortune-card-label">Lucky Numbers</div>
@@ -280,12 +911,14 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <div class="color-meaning" id="color-meaning"></div>
       </div>
     </div>
+
     <div class="closing-card">
       <div class="closing-label">오늘의 한마디</div>
       <div class="closing-text" id="closing-text"></div>
     </div>
+
     <a class="stella-banner" href="https://teddyberryarch.github.io/stella/" target="_blank">
-      <div class="stella-banner-label">더 깊은 분석이 필요하다면</div>
+      <div class="stella-banner-tag">더 깊은 분석이 필요하다면</div>
       <div class="stella-banner-title">✦ STELLA — 100페이지 인생 운명서</div>
       <div class="stella-banner-sub">99,000원 · 당신의 모든 것을 읽다</div>
     </a>
@@ -293,201 +926,201 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </div>
 
 <script>
-const API_BASE = window.location.hostname==='localhost' ? 'http://localhost:8000' : 'https://web-production-c1c71.up.railway.app';
+const API_BASE = window.location.hostname === 'localhost'
+  ? 'http://localhost:8000'
+  : 'https://web-production-c1c71.up.railway.app';
 const GOOGLE_CLIENT_ID = '176415333290-jel62770uf3ecfl5pvpqhnl842kogfkp.apps.googleusercontent.com';
-let state = { user:null, selectedMenu:null, paymentId:null, _preselect:null };
+let state = { user: null, selectedMenu: null, paymentId: null, _preselect: null };
 
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('screen-'+id).classList.add('active');
-  window.scrollTo(0,0);
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo(0, 0);
 }
 function showToast(msg) {
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2800);
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
 }
 function startGoogleLogin(preselect) {
-  if(preselect) state._preselect=preselect;
-  google.accounts.id.initialize({client_id:GOOGLE_CLIENT_ID, callback:handleGoogleResponse});
+  if (preselect) state._preselect = preselect;
+  google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: handleGoogleResponse });
   google.accounts.id.prompt();
 }
 async function handleGoogleResponse(resp) {
   try {
-    const r=await fetch(`${API_BASE}/auth/google`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id_token:resp.credential})});
-    if(!r.ok) throw new Error();
-    const data=await r.json();
-    state.user=data;
-    localStorage.setItem('50cent_user',JSON.stringify(data));
-    if(!data.has_saju) { showScreen('saju'); }
-    else { showMenuScreen(); if(state._preselect){selectMenu(state._preselect);state._preselect=null;} }
-  } catch(e) { showToast('로그인에 실패했어요. 다시 시도해주세요.'); }
+    const r = await fetch(`${API_BASE}/auth/google`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id_token: resp.credential }) });
+    if (!r.ok) throw new Error();
+    const data = await r.json();
+    state.user = data;
+    localStorage.setItem('50cent_user', JSON.stringify(data));
+    if (!data.has_saju) { showScreen('saju'); }
+    else { showMenuScreen(); if (state._preselect) { selectMenu(state._preselect); state._preselect = null; } }
+  } catch (e) { showToast('로그인에 실패했어요. 다시 시도해주세요.'); }
 }
 function logout() {
   localStorage.removeItem('50cent_user');
-  state.user=null; state.selectedMenu=null; state._preselect=null;
+  state.user = null; state.selectedMenu = null; state._preselect = null;
   google.accounts.id.disableAutoSelect();
   showScreen('landing');
 }
 function showSajuEdit() {
-  if(state.user&&state.user.birthdate) {
-    const [y,m,d]=state.user.birthdate.split('-');
-    document.getElementById('input-year').value=y;
-    document.getElementById('input-month').value=parseInt(m);
-    document.getElementById('input-day').value=parseInt(d);
-    document.getElementById('input-time').value=state.user.birth_time||'';
-    document.getElementById('input-gender').value=state.user.gender||'';
+  if (state.user && state.user.birthdate) {
+    const [y, m, d] = state.user.birthdate.split('-');
+    document.getElementById('input-year').value = y;
+    document.getElementById('input-month').value = parseInt(m);
+    document.getElementById('input-day').value = parseInt(d);
+    document.getElementById('input-time').value = state.user.birth_time || '';
+    document.getElementById('input-gender').value = state.user.gender || '';
   }
   showScreen('saju');
 }
 function sajuBack() {
-  if(state.user&&state.user.has_saju) showMenuScreen(); else showScreen('landing');
+  if (state.user && state.user.has_saju) showMenuScreen(); else showScreen('landing');
 }
 function resultBack() {
-  if(state.user) showMenuScreen(); else showScreen('landing');
+  if (state.user) showMenuScreen(); else showScreen('landing');
 }
 async function saveSaju() {
-  const year=parseInt(document.getElementById('input-year').value);
-  const month=parseInt(document.getElementById('input-month').value);
-  const day=parseInt(document.getElementById('input-day').value);
-  const time=document.getElementById('input-time').value.trim();
-  const gender=document.getElementById('input-gender').value;
-  const errEl=document.getElementById('saju-error');
-  if(!year||!month||!day||year<1920||year>2010||day<1||day>31){errEl.classList.add('visible');return;}
+  const year = parseInt(document.getElementById('input-year').value);
+  const month = parseInt(document.getElementById('input-month').value);
+  const day = parseInt(document.getElementById('input-day').value);
+  const time = document.getElementById('input-time').value.trim();
+  const gender = document.getElementById('input-gender').value;
+  const errEl = document.getElementById('saju-error');
+  if (!year || !month || !day || year < 1920 || year > 2010 || day < 1 || day > 31) { errEl.classList.add('visible'); return; }
   errEl.classList.remove('visible');
-  const birthdate=`${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-  const btn=document.getElementById('saju-save-btn');
-  btn.disabled=true; btn.textContent='저장 중...';
+  const birthdate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  const btn = document.getElementById('saju-save-btn');
+  btn.disabled = true; btn.textContent = '저장 중...';
   try {
-    const r=await fetch(`${API_BASE}/user/saju`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({user_id:state.user.user_id,birthdate,birth_time:time,gender})});
-    if(!r.ok) throw new Error();
-    state.user.has_saju=true; state.user.birthdate=birthdate; state.user.birth_time=time; state.user.gender=gender;
-    localStorage.setItem('50cent_user',JSON.stringify(state.user));
+    const r = await fetch(`${API_BASE}/user/saju`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ user_id: state.user.user_id, birthdate, birth_time: time, gender }) });
+    if (!r.ok) throw new Error();
+    state.user.has_saju = true; state.user.birthdate = birthdate; state.user.birth_time = time; state.user.gender = gender;
+    localStorage.setItem('50cent_user', JSON.stringify(state.user));
     showMenuScreen();
-    if(state._preselect){selectMenu(state._preselect);state._preselect=null;}
-  } catch(e) { showToast('저장에 실패했어요.'); }
-  finally { btn.disabled=false; btn.textContent='저장하고 계속'; }
+    if (state._preselect) { selectMenu(state._preselect); state._preselect = null; }
+  } catch (e) { showToast('저장에 실패했어요.'); }
+  finally { btn.disabled = false; btn.textContent = '저장하고 계속'; }
 }
 function showMenuScreen() {
-  if(state.user) {
-    document.getElementById('greeting-name').textContent=`안녕하세요, ${state.user.name}님 👋`;
-    document.getElementById('top-name').textContent=state.user.name;
-    document.getElementById('top-avatar').textContent=state.user.name.charAt(0);
+  if (state.user) {
+    document.getElementById('greeting-name').textContent = `안녕하세요, ${state.user.name}님 ✦`;
+    document.getElementById('top-name').textContent = state.user.name;
+    document.getElementById('top-avatar').textContent = state.user.name.charAt(0);
   }
-  document.querySelectorAll('.menu-card').forEach(c=>c.classList.remove('selected'));
+  document.querySelectorAll('.menu-card').forEach(c => c.classList.remove('selected'));
   document.getElementById('concern-wrap').classList.remove('visible');
-  document.getElementById('pay-btn').textContent='결제하고 확인하기';
+  document.getElementById('pay-btn').textContent = '결제하고 확인하기';
   document.getElementById('menu-error').classList.remove('visible');
-  document.getElementById('concern-text').value='';
-  document.getElementById('concern-count').textContent='0';
-  state.selectedMenu=null;
+  document.getElementById('concern-text').value = '';
+  document.getElementById('concern-count').textContent = '0';
+  state.selectedMenu = null;
   showScreen('menu');
 }
 function selectMenu(menu) {
-  state.selectedMenu=menu;
-  document.querySelectorAll('.menu-card').forEach(c=>c.classList.remove('selected'));
+  state.selectedMenu = menu;
+  document.querySelectorAll('.menu-card').forEach(c => c.classList.remove('selected'));
   document.querySelector(`[data-menu="${menu}"]`).classList.add('selected');
-  document.getElementById('concern-wrap').classList.toggle('visible',menu==='concern');
+  document.getElementById('concern-wrap').classList.toggle('visible', menu === 'concern');
   document.getElementById('menu-error').classList.remove('visible');
-  const prices={today:'$0.50',date:'$0.50',interview:'$0.50',concern:'$0.50',week:'$1.00'};
-  const names={today:'오늘 운세',date:'소개팅 운세',interview:'면접 운세',concern:'고민 운세',week:'이번 주 흐름'};
-  document.getElementById('pay-btn').textContent=`${names[menu]} 확인하기 — ${prices[menu]}`;
+  const prices = { today: '990원', date: '990원', interview: '990원', concern: '990원', week: '1,990원' };
+  const names = { today: '오늘 운세', date: '소개팅 운세', interview: '면접 운세', concern: '고민 운세', week: '이번 주 흐름' };
+  document.getElementById('pay-btn').textContent = `${names[menu]} 확인하기 — ${prices[menu]}`;
 }
 async function startPayment() {
-  if(!state.selectedMenu){document.getElementById('menu-error').classList.add('visible');return;}
-  const extra=state.selectedMenu==='concern'?document.getElementById('concern-text').value.trim():'';
-  if(state.selectedMenu==='concern'&&!extra){showToast('고민을 입력해주세요.');document.getElementById('concern-text').focus();return;}
-  const btn=document.getElementById('pay-btn');
-  btn.disabled=true; btn.textContent='준비 중...';
+  if (!state.selectedMenu) { document.getElementById('menu-error').classList.add('visible'); return; }
+  const extra = state.selectedMenu === 'concern' ? document.getElementById('concern-text').value.trim() : '';
+  if (state.selectedMenu === 'concern' && !extra) { showToast('고민을 입력해주세요.'); document.getElementById('concern-text').focus(); return; }
+  const btn = document.getElementById('pay-btn');
+  btn.disabled = true; btn.textContent = '준비 중...';
   try {
-    const r=await fetch(`${API_BASE}/payment/ready`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({user_id:state.user.user_id,menu_type:state.selectedMenu,extra_input:extra})});
-    if(!r.ok) throw new Error();
-    const data=await r.json();
-    const isMobile=/iPhone|iPad|Android/i.test(navigator.userAgent);
-    window.location.href=isMobile?data.next_redirect_mobile_url:data.next_redirect_pc_url;
-  } catch(e) {
+    const r = await fetch(`${API_BASE}/payment/ready`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ user_id: state.user.user_id, menu_type: state.selectedMenu, extra_input: extra }) });
+    if (!r.ok) throw new Error();
+    const data = await r.json();
+    const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
+    window.location.href = isMobile ? data.next_redirect_mobile_url : data.next_redirect_pc_url;
+  } catch (e) {
     showToast('결제 준비에 실패했어요.');
-    btn.disabled=false;
-    const prices={today:'$0.50',date:'$0.50',interview:'$0.50',concern:'$0.50',week:'$1.00'};
-    const names={today:'오늘 운세',date:'소개팅 운세',interview:'면접 운세',concern:'고민 운세',week:'이번 주 흐름'};
-    btn.textContent=`${names[state.selectedMenu]} 확인하기 — ${prices[state.selectedMenu]}`;
+    btn.disabled = false;
+    const prices = { today: '990원', date: '990원', interview: '990원', concern: '990원', week: '1,990원' };
+    const names = { today: '오늘 운세', date: '소개팅 운세', interview: '면접 운세', concern: '고민 운세', week: '이번 주 흐름' };
+    btn.textContent = `${names[state.selectedMenu]} 확인하기 — ${prices[state.selectedMenu]}`;
   }
 }
 async function loadResult(paymentId) {
   showScreen('loading');
   try {
-    const r=await fetch(`${API_BASE}/reading/${paymentId}`);
-    if(!r.ok){const e=await r.json();showToast(e.detail||'결과를 불러올 수 없어요.');if(state.user)showMenuScreen();else showScreen('landing');return;}
+    const r = await fetch(`${API_BASE}/reading/${paymentId}`);
+    if (!r.ok) { const e = await r.json(); showToast(e.detail || '결과를 불러올 수 없어요.'); if (state.user) showMenuScreen(); else showScreen('landing'); return; }
     renderResult(await r.json());
-  } catch(e) { showToast('오류가 발생했어요.');if(state.user)showMenuScreen();else showScreen('landing'); }
+  } catch (e) { showToast('오류가 발생했어요.'); if (state.user) showMenuScreen(); else showScreen('landing'); }
 }
 function renderResult(d) {
-  const menuNames={today:'오늘 운세',date:'소개팅 운세',interview:'면접 운세',concern:'고민 운세',week:'이번 주 흐름'};
-  document.getElementById('result-menu-label').textContent=menuNames[d.menu_type]||'운세';
-  document.getElementById('result-declaration').textContent=d.declaration||'';
-  document.getElementById('ohaeng-emoji').textContent=d.dominant_emoji||'✨';
-  document.getElementById('ohaeng-text').textContent=`${d.dominant||''} 기운`;
-  document.getElementById('fortune-body').textContent=d.fortune||'';
-  document.getElementById('action-wrap').style.display='none';
-  document.getElementById('weekly-wrap').style.display='none';
-  if(d.action&&['date','interview','concern'].includes(d.menu_type)){
-    document.getElementById('action-wrap').style.display='block';
-    document.getElementById('action-text').textContent=d.action;
+  const menuNames = { today: '오늘 운세', date: '소개팅 운세', interview: '면접 운세', concern: '고민 운세', week: '이번 주 흐름' };
+  document.getElementById('result-menu-label').textContent = menuNames[d.menu_type] || '운세';
+  document.getElementById('result-declaration').textContent = d.declaration || '';
+  document.getElementById('ohaeng-emoji').textContent = d.dominant_emoji || '✦';
+  document.getElementById('ohaeng-text').textContent = `${d.dominant || ''} 기운`;
+  document.getElementById('fortune-body').textContent = d.fortune || '';
+  document.getElementById('action-wrap').style.display = 'none';
+  document.getElementById('weekly-wrap').style.display = 'none';
+  if (d.action && ['date', 'interview', 'concern'].includes(d.menu_type)) {
+    document.getElementById('action-wrap').style.display = 'block';
+    document.getElementById('action-text').textContent = d.action;
   }
-  if(d.weekly&&d.menu_type==='week'){
-    document.getElementById('weekly-wrap').style.display='block';
-    const labels={mon_tue:'월·화',wed_thu:'수·목',fri_sat:'금·토',sun:'일'};
-    document.getElementById('weekly-grid').innerHTML=Object.entries(d.weekly).map(([k,v])=>`<div class="weekly-item"><div class="weekly-day">${labels[k]||k}</div><div class="weekly-text">${v}</div></div>`).join('');
+  if (d.weekly && d.menu_type === 'week') {
+    document.getElementById('weekly-wrap').style.display = 'block';
+    const labels = { mon_tue: '월·화', wed_thu: '수·목', fri_sat: '금·토', sun: '일' };
+    document.getElementById('weekly-grid').innerHTML = Object.entries(d.weekly).map(([k, v]) => `<div class="weekly-item"><div class="weekly-day">${labels[k] || k}</div><div class="weekly-text">${v}</div></div>`).join('');
   }
-  document.getElementById('lucky-numbers').innerHTML=(d.lucky_numbers||[]).map(n=>`<span class="lucky-num">${n}</span>`).join('');
-  document.getElementById('num-reason').textContent=d.number_reason||'';
-  document.getElementById('color-chip').style.background=d.lucky_color_hex||'#888';
-  document.getElementById('color-name').textContent=d.lucky_color_name||'';
-  document.getElementById('color-meaning').textContent=d.lucky_color_meaning||'';
-  document.getElementById('closing-text').textContent=d.closing||'';
+  document.getElementById('lucky-numbers').innerHTML = (d.lucky_numbers || []).map(n => `<span class="lucky-num">${n}</span>`).join('');
+  document.getElementById('num-reason').textContent = d.number_reason || '';
+  document.getElementById('color-chip').style.background = d.lucky_color_hex || '#888';
+  document.getElementById('color-name').textContent = d.lucky_color_name || '';
+  document.getElementById('color-meaning').textContent = d.lucky_color_meaning || '';
+  document.getElementById('closing-text').textContent = d.closing || '';
   showScreen('result');
 }
 async function shareResult() {
-  const text=`${document.getElementById('result-declaration').textContent}\n\n${document.getElementById('closing-text').textContent}\n\n— 궁금하면 50센트`;
-  if(navigator.share){try{await navigator.share({title:'궁금하면 50센트',text});}catch(e){}}
-  else{await navigator.clipboard.writeText(text);showToast('클립보드에 복사됐어요 📋');}
+  const text = `${document.getElementById('result-declaration').textContent}\n\n${document.getElementById('closing-text').textContent}\n\n— 운세 990`;
+  if (navigator.share) { try { await navigator.share({ title: '운세 990', text }); } catch (e) { } }
+  else { await navigator.clipboard.writeText(text); showToast('클립보드에 복사됐어요'); }
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
-  // 이벤트 바인딩
-  document.getElementById('btn-google').onclick=()=>startGoogleLogin(null);
-  document.getElementById('tag-date').onclick=()=>startGoogleLogin('date');
-  document.getElementById('tag-interview').onclick=()=>startGoogleLogin('interview');
-  document.getElementById('tag-concern').onclick=()=>startGoogleLogin('concern');
-  document.getElementById('tag-today').onclick=()=>startGoogleLogin('today');
-  document.getElementById('tag-week').onclick=()=>startGoogleLogin('week');
-  document.getElementById('btn-saju-back').onclick=sajuBack;
-  document.getElementById('saju-save-btn').onclick=saveSaju;
-  document.getElementById('btn-saju-edit').onclick=showSajuEdit;
-  document.getElementById('btn-logout').onclick=logout;
-  document.getElementById('card-today').onclick=()=>selectMenu('today');
-  document.getElementById('card-date').onclick=()=>selectMenu('date');
-  document.getElementById('card-interview').onclick=()=>selectMenu('interview');
-  document.getElementById('card-concern').onclick=()=>selectMenu('concern');
-  document.getElementById('card-week').onclick=()=>selectMenu('week');
-  document.getElementById('pay-btn').onclick=startPayment;
-  document.getElementById('btn-result-back').onclick=resultBack;
-  document.getElementById('btn-share').onclick=shareResult;
-  document.getElementById('concern-text').oninput=function(){document.getElementById('concern-count').textContent=this.value.length;};
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('btn-google').onclick = () => startGoogleLogin(null);
+  document.getElementById('tag-date').onclick = () => startGoogleLogin('date');
+  document.getElementById('tag-interview').onclick = () => startGoogleLogin('interview');
+  document.getElementById('tag-concern').onclick = () => startGoogleLogin('concern');
+  document.getElementById('tag-today').onclick = () => startGoogleLogin('today');
+  document.getElementById('tag-week').onclick = () => startGoogleLogin('week');
+  document.getElementById('btn-saju-back').onclick = sajuBack;
+  document.getElementById('saju-save-btn').onclick = saveSaju;
+  document.getElementById('btn-saju-edit').onclick = showSajuEdit;
+  document.getElementById('btn-logout').onclick = logout;
+  document.getElementById('card-today').onclick = () => selectMenu('today');
+  document.getElementById('card-date').onclick = () => selectMenu('date');
+  document.getElementById('card-interview').onclick = () => selectMenu('interview');
+  document.getElementById('card-concern').onclick = () => selectMenu('concern');
+  document.getElementById('card-week').onclick = () => selectMenu('week');
+  document.getElementById('pay-btn').onclick = startPayment;
+  document.getElementById('btn-result-back').onclick = resultBack;
+  document.getElementById('btn-share').onclick = shareResult;
+  document.getElementById('concern-text').oninput = function () { document.getElementById('concern-count').textContent = this.value.length; };
 
-  // URL 파라미터 체크
-  const pid=new URLSearchParams(location.search).get('payment_id');
-  if(pid){
-    state.paymentId=parseInt(pid);
-    const saved=localStorage.getItem('50cent_user');
-    if(saved) state.user=JSON.parse(saved);
+  const pid = new URLSearchParams(location.search).get('payment_id');
+  if (pid) {
+    state.paymentId = parseInt(pid);
+    const saved = localStorage.getItem('50cent_user');
+    if (saved) state.user = JSON.parse(saved);
     loadResult(state.paymentId);
     return;
   }
-  const saved=localStorage.getItem('50cent_user');
-  if(saved){
-    state.user=JSON.parse(saved);
-    if(!state.user.has_saju) showScreen('saju'); else showMenuScreen();
+  const saved = localStorage.getItem('50cent_user');
+  if (saved) {
+    state.user = JSON.parse(saved);
+    if (!state.user.has_saju) showScreen('saju'); else showMenuScreen();
   }
 });
 </script>
