@@ -163,7 +163,7 @@ html,body{height:100%;background:#0a0a0a;color:var(--text);font-family:'Noto Ser
   <div class="landing-center">
     <h1 class="landing-title f2">운세<br><span class="num">990</span></h1>
     <div class="landing-rule f3"></div>
-    <p class="landing-sub f3"><span style="opacity:0.5;font-size:15px;font-weight:300;">궁금하면 990원.</span></p>
+    <p class="landing-sub f3">어찌됐건 살아지고, 또 결국엔 다 사라져.<br><span style="opacity:0.45;font-size:15px;font-weight:300;">궁금하면 990원.</span></p>
     <div class="situation-tags f4">
       <span class="tag" id="tag-date">소개팅</span>
       <span class="tag" id="tag-interview">면접</span>
@@ -299,7 +299,7 @@ async function loadBg(){
   const today=new Date().toDateString();
   const cacheKey='unsplash_bg_'+today;
   // 오늘 캐시된 URL 있으면 재사용
-  const cached=sessionStorage.getItem(cacheKey);
+  const cached=localStorage.getItem(cacheKey);
   if(cached){bg.style.backgroundImage=`url('${cached}')`;return;}
   let url;
   try{
@@ -309,7 +309,7 @@ async function loadBg(){
   }catch(e){}
   if(!url){url=FALLBACK[new Date().getDate()%FALLBACK.length];}
   // 오늘 날짜로 캐싱
-  try{sessionStorage.setItem(cacheKey,url);}catch(e){}
+  try{localStorage.setItem(cacheKey,url);}catch(e){}
   bg.style.backgroundImage=`url('${url}')`;
 }
 
